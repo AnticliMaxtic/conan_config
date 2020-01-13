@@ -1,0 +1,8 @@
+include(linux_x86_64_x86_64_clang9_debug)
+[settings]
+
+[options]
+
+[build_requires]
+
+[env]

@@ -1,0 +1,12 @@
+include(linux_x86_64_x86_64_gcc7_debug)
+[settings]
+
+[options]
+
+[build_requires]
+
+[env]
+ROS1_PATH="/opt/ros/melodic"
+ROS1_OV_PATH="/root/ros/ros1_workspace/install_isolated"
+ROS2_PATH="/root/ros/ros2_base/install"
+ROS2_OV_PATH="/root/ros/ros2_workspace/install"

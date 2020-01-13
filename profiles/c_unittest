@@ -1,0 +1,10 @@
+include(gcc)
+
+[settings]
+
+[options]
+
+[build_requires]
+cmocka/[]
+
+[env]

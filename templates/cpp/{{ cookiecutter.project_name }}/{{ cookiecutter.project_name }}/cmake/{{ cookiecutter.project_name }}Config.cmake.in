@@ -1,0 +1,10 @@
+get_filename_component({{ cookiecutter.project_name }}_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+list(APPEND CMAKE_MODULE_PATH {{ "${" }}{{ cookiecutter.project_name }}_CMAKE_DIR})
+
+list(REMOVE_AT CMAKE_MODULE_PATH -1)
+
+if(NOT TARGET {{ cookiecutter.project_name }}::{{ cookiecutter.project_name }})
+    include("{{ "${" }}{{ cookiecutter.project_name }}_CMAKE_DIR}/{{ cookiecutter.project_name }}Targets.cmake")
+endif()
+
+set({{ cookiecutter.project_name }}_LIBRARIES {{ cookiecutter.project_name }}::{{ cookiecutter.project_name }})

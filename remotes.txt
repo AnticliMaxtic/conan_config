@@ -1,0 +1,2 @@
+LordObsidian01 https://api.bintray.com/conan/lordobsidian01/LordObsidian01 true
+conan-center https://conan.bintray.com true 

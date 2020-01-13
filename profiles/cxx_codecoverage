@@ -1,0 +1,11 @@
+include(gcc)
+
+[settings]
+
+[options]
+
+[build_requires]
+Catch2/[]@catchorg/stable
+
+[env]
+BUILD_CODE_COVERAGE=ON

@@ -1,0 +1,9 @@
+include(linux_x86_64_x86_64_clang8_debug)
+[settings]
+
+[options]
+
+[build_requires]
+
+[env]
+CONAN_CMAKE_GENERATOR="Ninja"

@@ -1,0 +1,8 @@
+include(windows_x86_64_x86_64_msvc16_Debug)
+[settings]
+
+[options]
+
+[build_requires]
+
+[env]

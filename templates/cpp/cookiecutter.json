@@ -1,0 +1,14 @@
+{
+    "full_name": "James T Kirk",
+    "email": "jtkirk@enterprise.com",
+    "git_username": "kirk_roll",
+    "project_name": "cookiecutter_cpp",
+    "repo_url": "https://github.com/AnticliMaxtic/",
+    "project_short_description": "cookiecutter cpp project",
+    "year": "2020",
+    "version": "0.0.1",
+    "license": "GNU General Public License v2.0",
+    "conan_user": "kirk_roll",
+    "conan_channel": "stable",
+    "sonarOrganization": "enterprise"
+}

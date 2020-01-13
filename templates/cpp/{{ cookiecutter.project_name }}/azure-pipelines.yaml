@@ -1,0 +1,71 @@
+name: "{{ cookiecutter.project_name }}"
+trigger:
+  branches:
+    include: ['master', 'integration', 'staging/*', '*']
+    #include: ['*'] # all branches
+
+resources:
+  repositories:
+    - repository: templates
+      type: Git
+      name: Code/pipeline_templates
+      ref: refs/heads/master
+
+variables:
+- group: "Secrets"
+
+- name: conanPackage
+  value: '{{ cookiecutter.project_name }}'
+- name: conanUser
+  value: '{{ cookiecutter.conan_user }}'
+- name: conanChannel
+  value: '{{ cookiecutter.conan_channel }}'
+
+stages: 
+- template: stages/build_ms-hosteduild_on-prem.yaml@templates
+  parameters:
+    conanPackage: $(conanPackage)
+    conanUser: $(conanUser)
+    conanChannel: $(conanChannel)
+    additionalProfiles:
+      linux_x86_64_x86_64_gcc7_debug:
+        profile: linux_x86_64_x86_64_gcc7_debug
+      linux_x86_64_x86_64_gcc7_release:
+        profile: linux_x86_64_x86_64_gcc7_release
+      linux_x86_64_x86_64_gcc9_debug:
+        profile: linux_x86_64_x86_64_gcc9_debug
+      linux_x86_64_x86_64_gcc9_release:
+        profile: linux_x86_64_x86_64_gcc9_release
+      linux_x86_64_x86_64_clang7_debug:
+        profile: linux_x86_64_x86_64_clang7_debug
+      linux_x86_64_x86_64_clang7_release:
+        profile: linux_x86_64_x86_64_clang7_release
+      linux_x86_64_x86_64_clang9_debug:
+        profile: linux_x86_64_x86_64_clang9_debug
+      linux_x86_64_x86_64_clang9_release:
+        profile: linux_x86_64_x86_64_clang9_release
+      linux_x86_64_armv8_gcc7_debug:
+        profile: linux_x86_64_armv8_gcc7_debug
+      linux_x86_64_armv8_gcc7_release:
+        profile: linux_x86_64_armv8_gcc7_release
+        
+# - stage: Test
+#   dependsOn: [OnPremBuild, MSHostedBuild]
+#   displayName: "Test"
+#   jobs:
+#   - template: test_unittest.yaml@templates
+#   - template: test_clangtidy.yaml@templates
+#     parameters: 
+#       tidy_checks: '*,-fuchsia*,-llvm-include-order'
+#   - template: jobs/test_gcovr.yaml@templates
+#     parameters: 
+#       cmake_target: $(conanPackage)
+#       coverage_executable: 'bin/test_{{ cookiecutter.project_name }}'
+#   - template: test_sonarqube.yaml@templates
+#     parameters:
+#       enableSonarQubeCodeCoverage: true
+#       coverageTooledFilePath: lib/CMakeFiles/$(conanPackage).dir/src/
+
+# - template: release.yaml@templates
+#   parameters:
+#     path_to_cmake_project: '$(Build.SourcesDirectory)/$(conanPackage)'
